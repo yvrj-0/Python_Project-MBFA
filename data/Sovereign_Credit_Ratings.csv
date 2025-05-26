@@ -1,0 +1,154 @@
+Sovereign,Rating_foreign,Rating_foreign_outlook,Rating_local,Rating_local_outlook ,Country_ceilings_foreign,Country_ceilings_local
+Abu Dhabi,Aa2,STA,Aa2,STA,-,-
+Albania,Ba3,STA,Ba3,STA,Ba1,Baa2
+Andorra,Baa1,STA,Baa1,STA,Aa3,-
+Angola,B3,STA,B3,STA,B3,B1
+Argentina,Caa3,POS,Caa3,POS,Caa1,B3
+Armenia,Ba3,STA,Ba3,STA,Ba1,Baa2
+Aruba,Baa3,STA,Baa3,STA,A3,A1
+Australia,Aaa,STA,Aaa,STA,Aaa,Aaa
+Austria,Aa1,STA,Aa1,STA,Aaa,Aaa
+Azerbaijan,Ba1,POS,Ba1,POS,Ba1,Baa2
+Bahamas,B1,POS,B1,POS,Ba1,Baa3
+Bahamas-Offshore Banks,-,-,-,-,WR,-
+Bahrain,B2,STA,B2,STA,Ba3,Ba2
+Bahrain-Offshore Banks [1],-,-,-,-,WR,-
+Bangladesh,B2,NEG,B2,NEG,B2,Ba3
+Barbados,B3,STA,B3,STA,B2,Ba3
+Belarus,C,STA,C,STA,Ca,Caa3
+Belgium,Aa3,NEG,Aa3,NEG,Aaa,Aaa
+Belize,Caa1,STA,Caa1,STA,B3,B2
+Benin,B1,POS,B1,POS,Ba1,Baa3
+Bermuda,A2,STA,A2,STA,Aaa,Aaa
+Bolivia,Caa3,STA,Caa3,STA,Caa2,Caa1
+Bosnia and Herzegovina,B3,STA,B3,STA,B3,B1
+Botswana,A3,NEG,A3,NEG,A1,Aa3
+Brazil,Ba1,POS,Ba1,POS,Baa1,A3
+Bulgaria,Baa1,STA,Baa1,STA,Aa2,Aa2
+Cambodia,B2,STA,B2,STA,B1,Ba3
+Cameroon,Caa1,STA,Caa1,STA,B3,B1
+Canada,Aaa,STA,Aaa,STA,Aaa,Aaa
+Cayman Islands,Aa3,STA,Aa3,STA,Aaa,Aaa
+Cayman Islands-Offshore Banks,-,-,-,-,WR,-
+Chile,A2,STA,A2,STA,Aaa,Aaa
+China,A1,NEG,A1,NEG,Aa1,Aaa
+Colombia,Baa2,NEG,Baa2,NEG,A1,A1
+Costa Rica,Ba3,POS,Ba3,POS,Ba1,Baa2
+Cote d'Ivoire,Ba2,STA,Ba2,STA,Baa2,Baa1
+Croatia,A3,STA,A3,STA,Aaa,Aaa
+Cuba,WR,WR,WR,WR,WR,WR
+Cyprus,A3,STA,A3,STA,Aaa,Aaa
+Czech Republic,Aa3,STA,Aa3,STA,Aaa,Aaa
+Democratic Republic of the Congo,B3,STA,B3,STA,B3,B2
+Denmark,Aaa,STA,Aaa,STA,Aaa,Aaa
+Dominican Republic,Ba3,POS,Ba3,POS,Ba1,Baa3
+Ecuador,Caa3,STA,-,-,Caa2,-
+Egypt,Caa1,POS,Caa1,POS,B3,B1
+El Salvador,B3,STA,-,-,B1,-
+Estonia,A1,STA,A1,STA,Aaa,Aaa
+eSwatini,B2,STA,B2,STA,Ba3,Ba2
+Ethiopia,Caa3,STA,Caa2,STA,Caa2,Caa1
+Fiji,B1,STA,B1,STA,B1,Ba1
+Finland,Aa1,STA,Aa1,STA,Aaa,Aaa
+France,Aa3,STA,Aa3,STA,Aaa,Aaa
+Gabon,Caa2,STA,Caa2,STA,Caa1,B2
+Georgia,Ba2,NEG,Ba2,NEG,Baa3,Baa1
+Germany,Aaa,STA,Aaa,STA,Aaa,Aaa
+Ghana,Caa2,POS,Caa2,POS,B3,B2
+Greece,Baa3,STA,Baa3,STA,Aa3,Aa3
+Guatemala,Ba1,STA,Ba1,STA,Baa3,Baa1
+Guernsey (Channel Islands),-,-,-,-,Aaa,Aaa
+Honduras,B1,STA,B1,STA,Ba3,Ba1
+"Hong Kong SAR, China",Aa3,NEG,Aa3,NEG,Aaa,Aaa
+Hungary,Baa2,NEG,Baa2,NEG,A1,A1
+Iceland,A1,STA,A1,STA,Aaa,Aaa
+India,Baa3,STA,Baa3,STA,A3,A2
+Indonesia,Baa2,STA,Baa2,STA,A3,A1
+Iraq,Caa1,STA,Caa1,STA,Caa1,B3
+Ireland,Aa3,POS,Aa3,POS,Aaa,Aaa
+Isle of Man,Aa3,STA,Aa3,STA,Aaa,Aaa
+Israel,Baa1,NEG,Baa1,NEG,Aa3,Aa3
+Italy,Baa3,STA,Baa3,STA,Aa3,Aa3
+Jamaica,B1,POS,B1,POS,Ba2,Baa3
+Japan,A1,STA,A1,STA,Aaa,Aaa
+Jersey (Channel Islands),-,-,-,-,Aaa,Aaa
+Jordan,Ba3,STA,Ba3,STA,Baa3,Baa2
+Kazakhstan,Baa1,STA,Baa1,STA,A3,A2
+Kenya,Caa1,POS,Caa1,POS,B2,B1
+Korea,Aa2,STA,Aa2,STA,Aaa,Aaa
+Kuwait,A1,STA,A1,STA,Aa1,Aa1
+Kyrgyz Republic,B3,STA,B3,STA,B3,B2
+Laos,Caa3,STA,Caa3,STA,Caa3,Caa1
+Latvia,A3,STA,A3,STA,Aaa,Aaa
+Lebanon,C,STA,C,STA,Ca,Ca
+Liechtenstein,-,-,-,-,Aaa,Aaa
+Lithuania,A2,STA,A2,STA,Aaa,Aaa
+Luxembourg,Aaa,STA,Aaa,STA,Aaa,Aaa
+"Macao SAR, China",Aa3,NEG,Aa3,NEG,Aaa,Aaa
+Malaysia,A3,STA,A3,STA,Aa2,Aa1
+Maldives,Caa2,NEG,Caa2,NEG,Caa1,B2
+Mali,Caa2,STA,Caa2,STA,Caa1,B3
+Malta,A2,STA,A2,STA,Aaa,Aaa
+Mauritius,Baa3,NEG,Baa3,NEG,A2,A2
+Mexico,Baa2,NEG,Baa2,NEG,A1,A1
+Moldova,B3,STA,B3,STA,B2,Ba3
+Mongolia,B2,STA,B2,STA,B2,Ba3
+Montenegro,Ba3,STA,-,-,Baa2,-
+Morocco,Ba1,STA,Ba1,STA,Baa2,Baa1
+Mozambique,Caa2,STA,Caa3,STA,Caa2,Caa1
+Namibia,B1,POS,B1,POS,Ba1,Baa3
+Netherlands,Aaa,STA,Aaa,STA,Aaa,Aaa
+New Zealand,Aaa,STA,Aaa,STA,Aaa,Aaa
+Nicaragua,B2,STA,B2,STA,B1,Ba3
+Niger,Caa3,STA,Caa3,STA,Caa2,B3
+Nigeria,Caa1,POS,Caa1,POS,Caa1,B2
+Norway,Aaa,STA,Aaa,STA,Aaa,Aaa
+Oman,Ba1,POS,Ba1,POS,Baa2,Baa1
+Pakistan,Caa2,POS,Caa2,POS,Caa2,B3
+Panama,Baa3,NEG,-,-,A2,-
+Panama-Offshore Banks,-,-,-,-,WR,-
+Papua New Guinea,B2,STA,B2,STA,B1,Ba2
+Paraguay,Baa3,STA,Baa3,STA,A3,A2
+Peru,Baa1,STA,Baa1,STA,Aa3,Aa3
+Philippines,Baa2,STA,Baa2,STA,A2,A1
+Poland,A2,STA,A2,STA,Aa1,Aa1
+Portugal,A3,STA,A3,STA,Aaa,Aaa
+Qatar,Aa2,STA,Aa2,STA,Aaa,Aaa
+Republic of the Congo,Caa2,STA,Caa2,STA,Caa1,B2
+Romania,Baa3,NEG,Baa3,NEG,A2,A2
+Russia,WR,RWR,WR,RWR,WR,WR
+Rwanda,B2,NEG,B2,NEG,B1,Ba2
+Saudi Arabia,Aa3,STA,Aa3,STA,Aaa,Aaa
+Senegal,B3,NEG,B3,NEG,Ba3,Ba2
+Serbia,Ba2,POS,Ba2,POS,Baa2,Baa1
+Sharjah,Ba1,STA,Ba1,STA,-,-
+Singapore,Aaa,STA,Aaa,STA,Aaa,Aaa
+Slovakia,A3,STA,A3,STA,Aaa,Aaa
+Slovenia,A3,POS,A3,POS,Aaa,Aaa
+Solomon Islands,Caa1,STA,Caa1,STA,B3,B2
+South Africa,Ba2,STA,Ba2,STA,Baa2,Baa1
+Spain,Baa1,POS,Baa1,POS,Aa1,Aa1
+Sri Lanka,Caa1,STA,-,-,B3,B1
+Sint Maarten,WR,WR,WR,WR,WR,WR
+St. Vincent & the Grenadines,B3,STA,B3,STA,B2,Ba3
+Suriname,Caa1,POS,Caa1,POS,B3,B2
+Sweden,Aaa,STA,Aaa,STA,Aaa,Aaa
+Switzerland,Aaa,STA,Aaa,STA,Aaa,Aaa
+"Taiwan, China",Aa3,STA,Aa3,STA,Aaa,Aaa
+Tajikistan,B3,POS,B3,POS,B3,B2
+Tanzania,B1,STA,B1,STA,Ba3,Ba1
+Thailand,Baa1,STA,Baa1,STA,A1,Aa3
+Togo,B3,STA,B3,STA,B1,Ba3
+Trinidad and Tobago,Ba2,STA,Ba2,STA,Ba1,Baa2
+Tunisia,Caa1,STA,Caa1,STA,B3,B1
+Turkiye,B1,POS,B1,POS,Ba3,Ba1
+Uganda,B3,STA,B3,STA,B1,Ba3
+Ukraine,Ca,STA,Ca,STA,Caa3,Caa3
+United Arab Emirates,Aa2,STA,Aa2,STA,Aaa,Aaa
+United Kingdom,Aa3,STA,Aa3,STA,Aaa,Aaa
+United States of America,Aaa,NEG,Aaa,NEG,Aaa,Aaa
+Uzbekistan,Ba3,STA,Ba3,STA,Ba3,Ba1
+Uruguay,Baa1,STA,Baa1,STA,Aa3,Aa2
+Venezuela [2],C,STA,WR,-,WR,WR
+Vietnam,Ba2,STA,Ba2,STA,Ba1,Baa2
+Zambia,Caa2,POS,Caa2,POS,B3,B2
