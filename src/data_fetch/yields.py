@@ -3,6 +3,7 @@ import pandas as pd
 from pandas_datareader import data as pdr
 from datetime import datetime
 from typing import Mapping
+from config import cfg
 
 def get_us_ten_year_rate(symbol: str, start: str, end: str) -> pd.Series:
     data = yf.download(symbol, start=start, end=end, progress=False)
@@ -37,13 +38,8 @@ def compile_all_rates(us_config: Mapping[str, str], fred_config: Mapping[str, st
     return tout.ffill()
 
 if __name__ == "__main__":
-    us_args = {"US": "^TNX"}
-    euro_args = {
-        "DE": "IRLTLT01DEM156N",
-        "FR": "IRLTLT01FRA156N",
-        "IT": "IRLTLT01ITA156N",
-        "ES": "IRLTLT01ESP156N",
-    }
+    us_args = cfg["args"]["us"]
+    euro_args = cfg["args"]["euro"]
     debut = "2015-01-01"
     fin = datetime.today().strftime("%Y-%m-%d")
     df = compile_all_rates(us_args, euro_args, debut, fin)

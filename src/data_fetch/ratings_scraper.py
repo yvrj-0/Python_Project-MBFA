@@ -1,3 +1,4 @@
+from config import cfg
 import logging
 import random
 import time
@@ -23,12 +24,7 @@ REQ_HEADERS: Dict[str, str] = {
     "Upgrade-Insecure-Requests": "1"
 }
 
-CTY_MAP: Dict[str, str] = {
-    "united-states": "united-states",
-    "france": "france",
-    "germany": "germany",
-    "italy": "italy"
-}
+CTY_MAP: Dict[str,str] = cfg["scraper"]["cty_map"]
 
 log = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
@@ -91,7 +87,7 @@ def collect_multiple_ratings(codes: List[str]) -> pd.DataFrame:
     return combined
 
 if __name__ == "__main__":
-    slugs = ["united-states", "france", "germany", "italy"]
+    slugs = cfg["scraper"]["slugs"]
     df_all = collect_multiple_ratings(slugs)
     print("Head of combined ratings:")
     print(df_all.head(10).to_string(index=False))

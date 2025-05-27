@@ -8,31 +8,35 @@ sys.path.insert(0, os.path.dirname(__file__))
 
 from yields import compile_all_rates
 from ratings_scraper import collect_multiple_ratings
+from config import cfg
 
 def assemble_moodys_dataset(
-    start_date: str = "2023-01-01",
-    end_date: str = "2023-12-31",
-    slugs: list = None
+      start_date: str = None,
+      end_date:   str = None,
+      slugs:      list  = None
 ) -> pd.DataFrame:
-    us_map = {"US": "^TNX"}
-    euro_map = {
-        "DE": "IRLTLT01DEM156N",
-        "FR": "IRLTLT01FRA156N",
-        "IT": "IRLTLT01ITA156N",
-    }
-    df_yields = compile_all_rates(us_map, euro_map, start_date, end_date)
+    start_date = start_date or cfg["dates"]["start"]
+    end_date   = end_date   or cfg["dates"]["end"]
+    slugs      = slugs      or cfg["scraper"]["slugs"]
+
+    df_yields = compile_all_rates(
+        cfg["yields"]["us_map"],
+        cfg["yields"]["euro_map"],
+        start_date,
+        end_date
+    )
     df_yields.index.name = "Date"
 
+
+
+
     if slugs is None:
-        slugs = ["united-states", "france", "germany", "italy"]
-    df_all = collect_multiple_ratings(slugs)
+        slugs = cfg["scraper"]["slugs"]
+    df_all    = collect_multiple_ratings(slugs)
     df_moodys = df_all[df_all["Agency"] == "Moody's"].copy()
-    df_moodys["Country"] = df_moodys["Country"].map({
-        "United States": "US",
-        "France": "FR",
-        "Germany": "DE",
-        "Italy": "IT"
-    })
+
+    country_map = cfg["scraper"]["country_map"]
+    df_moodys["Country"] = df_moodys["Country"].map(country_map)
     df_moodys = df_moodys[
         (df_moodys["Date"] >= pd.to_datetime(start_date)) &
         (df_moodys["Date"] <= pd.to_datetime(end_date))
