@@ -1,0 +1,39 @@
+scraper:
+  slugs:
+    - united-states
+    - france
+    - germany
+    - italy
+  country_map:
+    United States: US
+    France:           FR
+    Germany:          DE
+    Italy:            IT
+  cty_map:
+    united-states: "united-states"
+    france: "france"
+    germany: "germany"
+    italy: "italy"
+
+yields:
+  us_map:
+    US: "^TNX"
+  euro_map:
+    DE: "IRLTLT01DEM156N"
+    FR: "IRLTLT01FRA156N"
+    IT: "IRLTLT01ITA156N"
+
+dates:
+  start: "2023-01-01"
+  end:   "2023-12-31"
+
+args:
+  us:
+    "US": "^TNX"
+  euro:
+    "DE": "IRLTLT01DEM156N"
+    "FR": "IRLTLT01FRA156N"
+    "IT": "IRLTLT01ITA156N"
+    "ES": "IRLTLT01ESP156N"
+
+
