@@ -47,3 +47,61 @@ stats = (
       .rename(columns={'mean':'Moyenne', 'var':'Variance', 'std':'Écart-type'})
 )
 st.dataframe(stats)
+
+st.markdown("### Aperçu des données")
+st.write("**Dimension (lignes, colonnes) :**", df.shape)
+st.dataframe(df.head(-1))
+
+descr = df.describe(include="all").round(4)
+descr = descr.drop(index=["top", "freq"], errors="ignore")
+dtypes = df.dtypes.astype(str).to_frame(name="dtype")
+descr = pd.concat([dtypes, descr])
+st.markdown("### Statistiques descriptives")
+st.dataframe(descr)
+
+st.subheader("Densité estimée des rendements")
+fig, ax = plt.subplots()
+sns.kdeplot(df["Yield"], fill=True, ax=ax)
+ax.set_xlabel("Yield (%)")
+st.pyplot(fig)
+
+st.subheader("Boxplots des rendements par pays")
+fig, ax = plt.subplots(figsize=(12,6))
+sns.boxplot(data=df, x="Country", y="Yield", ax=ax)
+ax.set_xticklabels(ax.get_xticklabels(), rotation=45, ha="right")
+st.pyplot(fig)
+
+st.subheader("Violin plots des rendements par pays")
+fig, ax = plt.subplots(figsize=(12,6))
+sns.violinplot(data=df, x="Country", y="Yield", inner="quartile", ax=ax)
+ax.set_xticklabels(ax.get_xticklabels(), rotation=45, ha="right")
+st.pyplot(fig)
+
+def plot_post_event_paths(direction: str, df: pd.DataFrame, window: int = 100):
+    fig, ax = plt.subplots(figsize=(10, 6))
+    events = df[df['Direction'] == direction]
+    for idx, row in events.iterrows():
+        country = row['Country']
+        event_date = row['Date']
+        mask = (df['Country'] == country) & \
+               (df['Date'] >= event_date) & \
+               (df['Date'] < event_date + pd.Timedelta(days=window))
+        series = df.loc[mask, 'Yield']
+        norm = series / series.iloc[0] * 100
+        ax.plot(norm.index.map(lambda i: (df.loc[i, 'Date'] - event_date).days),
+                norm,
+                label=f"{country} @ {event_date.date()}"
+               )
+    ax.set_title(f"variation des rendements {window} jours après {direction} de la notation")
+    ax.set_xlabel("Jours depuis l'événement")
+    ax.set_ylabel("Rendement normalisé (base = 100)")
+    ax.legend(fontsize="small", ncol=2)
+    ax.grid(True)
+    plt.tight_layout()
+    return fig, ax
+
+
+st.title("Impact des changements de notation – Analyse post-événement")
+direction = st.radio("Type d'événement", ("Upgrade", "Downgrade"))
+fig, ax = plot_post_event_paths(direction, df, window=100)
+st.pyplot(fig)
