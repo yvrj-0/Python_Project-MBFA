@@ -1,4 +1,5 @@
 from pathlib import Path
+import sys
 import logging
 import random
 import time
@@ -9,8 +10,23 @@ import pandas as pd
 import requests
 from bs4 import BeautifulSoup
 
+HERE      = Path(__file__).resolve().parent           
+ROOT_SRC  = HERE.parent                               
+sys.path.insert(0, str(ROOT_SRC))
+
+from config import cfg
+
 logger = logging.getLogger(__name__)
-logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s"
+)
+
+SLUGS    = cfg["scraper"]["slugs"]
+CTY_MAP  = cfg["scraper"]["cty_map"]
+CODE_MAP = cfg["scraper"]["country_map"]
+START    = cfg["dates"]["start"]
+END      = cfg["dates"]["end"] or datetime.today().strftime("%Y-%m-%d")
 
 HEADERS: Dict[str, str] = {
     "User-Agent": (
@@ -18,37 +34,23 @@ HEADERS: Dict[str, str] = {
         "AppleWebKit/537.36 (KHTML, like Gecko) "
         "Chrome/120.0.0.0 Safari/537.36"
     ),
-    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "Accept":          "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
     "Accept-Language": "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7",
-    "Connection": "keep-alive"
-}
-
-COUNTRY_MAP: Dict[str, str] = {
-    "united-states": "united-states",
-    "france":        "france",
-    "germany":       "germany",
-    "italy":         "italy"
-}
-
-CODE_MAP: Dict[str, str] = {
-    "United States": "US",
-    "France":        "FR",
-    "Germany":       "DE",
-    "Italy":         "IT"
+    "Connection":      "keep-alive"
 }
 
 def fetch_rating_history(slug: str) -> pd.DataFrame:
-    key = COUNTRY_MAP.get(slug, slug)
+    key = CTY_MAP.get(slug, slug)
     url = f"https://countryeconomy.com/ratings/{key}"
     try:
         time.sleep(random.uniform(2, 4))
         resp = requests.get(url, headers=HEADERS, timeout=15)
         resp.raise_for_status()
-        dom = BeautifulSoup(resp.text, "html.parser")
+        soup = BeautifulSoup(resp.text, "html.parser")
 
         records: List[Dict[str, str]] = []
         agencies = ["Moody's", "S&P", "Fitch"]
-        tables = dom.find_all("div", class_="table-responsive")[:3]
+        tables = soup.find_all("div", class_="table-responsive")[:3]
 
         for idx, table in enumerate(tables):
             agency = agencies[idx]
@@ -63,7 +65,7 @@ def fetch_rating_history(slug: str) -> pd.DataFrame:
                 except ValueError:
                     logger.warning("Date invalide %s pour %s", date_text, slug)
                     continue
-                if date.year < 2020:
+                if date < pd.to_datetime(START):
                     continue
                 records.append({
                     "Date":    date,
@@ -102,17 +104,11 @@ def fetch_all_ratings(slugs: List[str]) -> pd.DataFrame:
 
 
 if __name__ == "__main__":
-    slugs   = ["united-states","france","germany","italy"]
-    events  = fetch_all_ratings(slugs)
-    events  = events[events["Date"] >= "2020-01-01"]
+    events = fetch_all_ratings(SLUGS)
+    events = events[events["Date"] >= START]
     events["Country"] = events["Country"].map(CODE_MAP)
 
-    bd = pd.date_range(
-        start="2020-01-01",
-        end=datetime.today().strftime("%Y-%m-%d"),
-        freq="B"
-    )
-
+    bd = pd.date_range(start=START, end=END, freq="B")
     parts: List[pd.DataFrame] = []
     for code, grp in events.groupby("Country"):
         grp = grp.sort_values("Date")[["Date","Agency","Rating"]]
@@ -137,5 +133,4 @@ if __name__ == "__main__":
     daily = daily.dropna(subset=["Agency","Rating"])
     out_csv = Path(__file__).parents[2] / "data" / "ratings_daily.csv"
     daily.to_csv(out_csv, index=False)
-    print(f"✓ Dataset quotidien généré → {out_csv}")
-    print(daily.head(10).to_string(index=False))
+
