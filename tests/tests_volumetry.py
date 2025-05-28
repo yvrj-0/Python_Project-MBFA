@@ -21,3 +21,7 @@ def test_date_bounds(final_df, yields_csv):
     min_y, max_y = yields_csv["Date"].min(), yields_csv["Date"].max()
     min_f, max_f = final_df["Date"].min(),   final_df["Date"].max()
     assert (min_f, max_f) == (min_y, max_y), f"Date range mismatch: yields {min_y}–{max_y}, final {min_f}–{max_f}"
+
+if __name__ == "__main__":
+    import pytest
+    pytest.main([__file__])
