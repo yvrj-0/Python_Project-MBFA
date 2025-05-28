@@ -1,77 +1,70 @@
-from pathlib import Path
-from datetime import datetime
-from typing import Mapping
+import os
 import yaml
-import pandas as pd
 import yfinance as yf
+import pandas as pd
 from pandas_datareader import data as pdr
+from datetime import datetime, date
+from typing import Mapping
 
-BASE_DIR = Path(__file__).resolve().parents[2]
-CONFIG_FILE = BASE_DIR / "src" / "config.yaml"
-DATA_DIR = BASE_DIR / "data"
-OUTPUT_FILE = DATA_DIR / "yields.csv"
+HERE         = os.path.abspath(os.path.dirname(__file__))
+PROJECT_ROOT = os.path.abspath(os.path.join(HERE, os.pardir, os.pardir))
+cfg = yaml.safe_load(open(os.path.join(PROJECT_ROOT, "src", "config.yaml"), encoding="utf-8"))
 
-with CONFIG_FILE.open("r", encoding="utf-8") as f:
-    config = yaml.safe_load(f)
+def get_us_ten_year_rate(symbol: str, start: str, end: str) -> pd.Series:
+    data = yf.download(symbol, start=start, end=end, progress=False)
+    serie = data["Close"] if "Close" in data else data["Adj Close"]
+    serie.name = "US_10Y"
+    return serie
 
-START = "2020-01-01"
-END = datetime.today().strftime("%Y-%m-%d")
-
-def fetch_us_rate(symbol: str, start: str, end: str) -> pd.Series:
-    df = yf.download(symbol, start=start, end=end, progress=False)
-    series = df["Close"] if "Close" in df else df["Adj Close"]
-    series.name = symbol
-    return series
-
-def fetch_euro_rates(mapping: Mapping[str, str], start: str, end: str) -> pd.DataFrame:
-    start_dt = datetime.fromisoformat(start)
-    end_dt = datetime.fromisoformat(end)
-    df = pd.DataFrame()
-    for country, code in mapping.items():
+def get_foreign_rates(series_map: Mapping[str, str], start: str, end: str) -> pd.DataFrame:
+    debut = datetime.fromisoformat(start)
+    fin = datetime.fromisoformat(end)
+    tableau = pd.DataFrame()
+    for pays, code in series_map.items():
         try:
-            s = pdr.DataReader(code, "fred", start_dt, end_dt)
-            s.columns = [country]
-            df = pd.concat([df, s], axis=1)
-        except Exception as e:
-            print(f"FRED error for {country}: {e}")
-    return df
+            s = pdr.DataReader(code, "fred", debut, fin)
+            s.columns = [pays]
+            tableau = pd.concat([tableau, s], axis=1)
+        except Exception as err:
+            print(f"Erreur pour {pays} ({code}) : {err}")
+    return tableau
 
-def compile_rates(
-    us_map: Mapping[str, str],
-    euro_map: Mapping[str, str],
-    start: str,
-    end: str
-) -> pd.DataFrame:
-    parts = []
-    for label, sym in us_map.items():
+def compile_all_rates(us_config: Mapping[str, str], fred_config: Mapping[str, str], start: str, end: str) -> pd.DataFrame:
+    listes = []
+    for label, symb in us_config.items():
         try:
-            s = fetch_us_rate(sym, start, end)
-            s.name = label
-            parts.append(s)
-        except Exception as e:
-            print(f"US error for {label}: {e}")
-    parts.append(fetch_euro_rates(euro_map, start, end))
-    df = pd.concat(parts, axis=1)
-    idx = pd.date_range(start=start, end=end, freq="B")
-    df = df.reindex(idx).ffill()
-    df.index.name = "Date"
-    return df
+            listes.append(get_us_ten_year_rate(symb, start, end))
+        except Exception as err:
+            print(f"Problème US ({label}) : {err}")
+    autres = get_foreign_rates(fred_config, start, end)
+    tout = pd.concat(listes + [autres], axis=1)
+    jours = pd.date_range(start=start, end=end, freq="B")
+    tout = tout.reindex(jours)
+    tout.index.name = "Date"
+    return tout.ffill()
 
-def build_yields_dataset() -> pd.DataFrame:
-    df = compile_rates(
-        config["yields"]["us_map"],
-        config["yields"]["euro_map"],
-        START,
-        END
+def build_yields_dataset(start="2020-01-01", end=None, out_csv=None) -> pd.DataFrame:
+    if end is None:
+        end = date.today().isoformat()
+    if out_csv is None:
+        out_csv = os.path.join(PROJECT_ROOT, "data", "yields.csv")
+
+    df = compile_all_rates(
+        cfg["yields"]["us_map"],
+        cfg["yields"]["euro_map"],
+        start, end
     )
-    df_long = (
-        df.reset_index()
-          .melt(id_vars="Date", var_name="Country", value_name="Yield")
-          .dropna(subset=["Yield"])
-    )
-    DATA_DIR.mkdir(parents=True, exist_ok=True)
-    df_long.to_csv(OUTPUT_FILE, index=False)
-    print(f"Yields dataset ({START}→{END}) saved to {OUTPUT_FILE}")
+
+    df_long = df.reset_index().melt(
+        id_vars="Date", var_name="Country", value_name="Yield"
+    ).dropna(subset=["Yield"])
+
+    inv_us = {v: k for k, v in cfg["yields"]["us_map"].items()}
+    df_long["Country"] = df_long["Country"].replace(inv_us)
+
+    os.makedirs(os.path.dirname(out_csv), exist_ok=True)
+    df_long.to_csv(out_csv, index=False)
+    print(f"✓ Yields saved from {start} to {end} → {out_csv}")
     return df_long
 
 if __name__ == "__main__":

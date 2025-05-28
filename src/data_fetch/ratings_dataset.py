@@ -3,6 +3,7 @@ import logging
 import random
 import time
 from typing import List, Dict
+from datetime import datetime
 
 import pandas as pd
 import requests
@@ -10,7 +11,6 @@ from bs4 import BeautifulSoup
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
-
 
 HEADERS: Dict[str, str] = {
     "User-Agent": (
@@ -28,6 +28,13 @@ COUNTRY_MAP: Dict[str, str] = {
     "france":        "france",
     "germany":       "germany",
     "italy":         "italy"
+}
+
+CODE_MAP: Dict[str, str] = {
+    "United States": "US",
+    "France":        "FR",
+    "Germany":       "DE",
+    "Italy":         "IT"
 }
 
 def fetch_rating_history(slug: str) -> pd.DataFrame:
@@ -50,7 +57,7 @@ def fetch_rating_history(slug: str) -> pd.DataFrame:
                 if len(cols) < 2:
                     continue
                 date_text = cols[0].get_text(strip=True)
-                rating = cols[1].get_text(strip=True)
+                rating    = cols[1].get_text(strip=True)
                 try:
                     date = pd.to_datetime(date_text)
                 except ValueError:
@@ -59,15 +66,15 @@ def fetch_rating_history(slug: str) -> pd.DataFrame:
                 if date.year < 2020:
                     continue
                 records.append({
-                    "Date": date,
+                    "Date":    date,
                     "Country": slug.replace("-", " ").title(),
-                    "Agency": agency,
-                    "Rating": rating
+                    "Agency":  agency,
+                    "Rating":  rating
                 })
 
         if not records:
             logger.warning("Aucune donnée pour %s", slug)
-            return pd.DataFrame(columns=["Date", "Country", "Agency", "Rating"])
+            return pd.DataFrame(columns=["Date","Country","Agency","Rating"])
 
         df = pd.DataFrame(records)
         df.sort_values("Date", ascending=False, inplace=True)
@@ -75,7 +82,8 @@ def fetch_rating_history(slug: str) -> pd.DataFrame:
 
     except requests.RequestException as e:
         logger.error("Erreur pour %s : %s", slug, e)
-        return pd.DataFrame(columns=["Date", "Country", "Agency", "Rating"])
+        return pd.DataFrame(columns=["Date","Country","Agency","Rating"])
+
 
 def fetch_all_ratings(slugs: List[str]) -> pd.DataFrame:
     dfs: List[pd.DataFrame] = []
@@ -86,24 +94,48 @@ def fetch_all_ratings(slugs: List[str]) -> pd.DataFrame:
             dfs.append(df)
         else:
             logger.warning("Omission de %s", slug)
-
     if not dfs:
-        return pd.DataFrame(columns=["Date", "Country", "Agency", "Rating"])
-
+        return pd.DataFrame(columns=["Date","Country","Agency","Rating"])
     result = pd.concat(dfs, ignore_index=True)
     result.sort_values("Date", ascending=False, inplace=True)
-    result["PrevRating"] = result.groupby(["Country", "Agency"])["Rating"].shift(1)
-    result["RatingChanged"] = (result["Rating"] != result["PrevRating"]).fillna(False)
     return result
 
+
 if __name__ == "__main__":
-    slugs = ["united-states", "france", "germany", "italy"]
-    df = fetch_all_ratings(slugs)
+    slugs   = ["united-states","france","germany","italy"]
+    events  = fetch_all_ratings(slugs)
+    events  = events[events["Date"] >= "2020-01-01"]
+    events["Country"] = events["Country"].map(CODE_MAP)
 
-    out_dir = Path(__file__).parents[2] / "data"
-    out_dir.mkdir(parents=True, exist_ok=True)
-    out_csv = out_dir / "ratings.csv"
+    bd = pd.date_range(
+        start="2020-01-01",
+        end=datetime.today().strftime("%Y-%m-%d"),
+        freq="B"
+    )
 
-    df.to_csv(out_csv, index=False)
-    print(f"Dataset saved to {out_csv}")
-    print(df.head(10).to_string(index=False))
+    parts: List[pd.DataFrame] = []
+    for code, grp in events.groupby("Country"):
+        grp = grp.sort_values("Date")[["Date","Agency","Rating"]]
+        df  = pd.DataFrame(index=bd).rename_axis("Date")
+        df["Country"] = code
+        merged = pd.merge_asof(
+            df.reset_index(),
+            grp,
+            on="Date",
+            direction="backward",
+            allow_exact_matches=True
+        ).set_index("Date")
+        first_date = grp["Date"].min()
+        merged = merged.loc[first_date:]
+        merged["Agency"]        = merged["Agency"].ffill()
+        merged["Rating"]        = merged["Rating"].ffill()
+        merged["PrevRating"]    = merged["Rating"].shift(1)
+        merged["RatingChanged"] = (merged["Rating"] != merged["PrevRating"]).fillna(False)
+        parts.append(merged.reset_index())
+
+    daily = pd.concat(parts, ignore_index=True)
+    daily = daily.dropna(subset=["Agency","Rating"])
+    out_csv = Path(__file__).parents[2] / "data" / "ratings_daily.csv"
+    daily.to_csv(out_csv, index=False)
+    print(f"✓ Dataset quotidien généré → {out_csv}")
+    print(daily.head(10).to_string(index=False))
