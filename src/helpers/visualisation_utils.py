@@ -4,11 +4,23 @@ import matplotlib.pyplot as plt
 
 @st.cache_data
 def load_data():
+    """
+    lis le csv et fait un traitement préliminaire (date/fillna).
+
+    Returns
+    -------
+    pandas.DataFrame
+    """
     df = pd.read_csv('data/final_dataset.csv', parse_dates=['Date'])
     df['Date'] = pd.to_datetime(df['Date'])
     df['RatingChanged'] = df['RatingChanged'].fillna(False).astype(bool)
 
     def direction(row):
+        """
+        Pour chaque changement de rating, détermine s'il sagit d'un downgrade
+        ou d'un upgrade.
+        :param row = ligne du dataset
+        """
         if not row['RatingChanged'] or pd.isna(row['PrevRating']):
             return None
         return 'Upgrade' if row['Rating'] > row['PrevRating'] else 'Downgrade'
@@ -16,7 +28,21 @@ def load_data():
     df['Direction'] = df.apply(direction, axis=1)
     return df
 
-def plot_post_event_paths(direction: str, df: pd.DataFrame, window: int = 100):
+def plot_post_event_paths(direction: str, df: pd.DataFrame, window: int = 100) :
+    """
+    Récupère l’historique des notations pour un pays donné depuis countryeconomy.com.
+
+    Parameters
+    ----------
+    direction : upgrade/downgrade de la notation
+    df : dataframe utilisé
+    window : nombre de journées après le changement de notation que l'on veut considérer
+
+    Returns
+        Figure Matplotlib
+    -------
+
+    """
     fig, ax = plt.subplots(figsize=(10, 6))
     events = df[df['Direction'] == direction]
     for idx, row in events.iterrows():

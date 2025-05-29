@@ -5,19 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="580a48f2-c9b6-42ae-87a5-fa4a4ce417b3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/final_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/ratings_daily.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/yields.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pytest.ini" beforeDir="false" afterPath="$PROJECT_DIR$/pytest.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/mbfa.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/mbfa.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data_fetch/build_yields_dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/data_fetch/build_yields_dataset.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data_fetch/ratings_dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/data_fetch/ratings_dataset.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/etl/transform.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/etl/transform.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/tests_variation.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_variation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/tests_volumetry.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_volumetry.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/config_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/config_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/path_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/path_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/scraping_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/scraping_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/visualisation_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/visualisation_utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

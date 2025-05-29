@@ -29,9 +29,27 @@ def fetch_rating_history(
     logger: Optional[logging.Logger] = None
 ) -> pd.DataFrame:
     """
-    Pour un slug, va chercher sur countryeconomy.com,
-    extrait les 3 tableaux Moody's/S&P/Fitch,
-    ne garde que les dates >= start, et renvoie un DataFrame.
+    Récupère l’historique des notations pour un pays donné depuis countryeconomy.com.
+
+    Parameters
+    ----------
+    slug : str
+        Identifiant du pays utilisé dans l’URL.
+    cty_map : Dict[str, str]
+        Dictionnaire de mapping des slugs vers les clés réelles.
+    start : str
+        Date de début au format "YYYY-MM-DD". Seules les données à partir de cette date sont conservées.
+    headers : Dict[str, str], optional
+        En-têtes HTTP à utiliser pour la requête (par défaut HEADERS).
+    logger : logging.Logger, optional
+        Logger pour l’émission des messages d’information et d’erreur.
+
+    Returns
+    -------
+    pandas.DataFrame
+        DataFrame contenant les colonnes ["Date", "Country", "Agency", "Rating"].
+        Trié par Date décroissante. Si aucune donnée ou en cas d’erreur HTTP,
+        renvoie un DataFrame vide avec ces colonnes.
     """
     if logger is None:
         logger = setup_logger(__name__)
@@ -94,8 +112,31 @@ def fetch_all_ratings(
     logger: Optional[logging.Logger] = None
 ) -> pd.DataFrame:
     """
-    Itère sur les slugs, concatène les DataFrames non vides,
-    reindexe sur jours ouvrés et complète l’historique.
+    Agrège l’historique des notations pour plusieurs pays sur une période donnée.
+
+    Parameters
+    ----------
+    slugs : List[str]
+        Liste des slugs des pays à scraper.
+    cty_map : Dict[str, str]
+        Dictionnaire de mapping des slugs vers les clés de countryeconomy.
+    code_map : Dict[str, str]
+        Dictionnaire de conversion des noms de pays en codes standard.
+    start : str
+        Date de début au format "YYYY-MM-DD".
+    end : str
+        Date de fin au format "YYYY-MM-DD".
+    headers : Dict[str, str], optional
+        En-têtes HTTP pour les requêtes (par défaut HEADERS).
+    logger : logging.Logger, optional
+        Logger pour l’émission des messages d’information et d’avertissement.
+
+    Returns
+    -------
+    pandas.DataFrame
+        DataFrame concaténé pour tous les pays, réindexé sur les jours ouvrés
+        entre start et end, avec colonnes ["Date", "Country", "Agency", "Rating",
+        "PrevRating", "RatingChanged"].
     """
     if logger is None:
         logger = setup_logger(__name__)

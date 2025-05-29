@@ -11,3 +11,4 @@ seaborn==0.13.2
 SQLAlchemy==2.0.34
 streamlit==1.37.1
 yfinance==0.2.61
+typing
