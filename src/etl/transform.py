@@ -37,4 +37,5 @@ def build_final(session):
     out_csv = DATA_DIR / "final_dataset.csv"
     df[["Date","Country","Yield","Agency","Rating","PrevRating","RatingChanged"]].to_csv(out_csv, index=False)
     print(f"[DEBUG]   Export CSV final sous : {out_csv}")
+    df = df.drop(columns=["id_x", "id_y"])
     return df

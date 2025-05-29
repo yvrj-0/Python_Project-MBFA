@@ -5,17 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="580a48f2-c9b6-42ae-87a5-fa4a4ce417b3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/etl/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/etl/ingest.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/etl/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/etl/session.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/etl/transform.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/final_dataset.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/final_dataset.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/final_dataset.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/ratings_daily.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/yields.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pytest.ini" beforeDir="false" afterPath="$PROJECT_DIR$/pytest.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/mbfa.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/mbfa.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data_fetch/build_yields_dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/data_fetch/build_yields_dataset.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/config_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/config_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data_fetch/ratings_dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/data_fetch/ratings_dataset.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/etl/transform.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/etl/transform.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sql_alchemy.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/tests_variation.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_variation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/tests_volumetry.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_volumetry.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,6 +32,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -72,8 +75,11 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
     "Python tests.Python tests in tests_variation.py.executor": "Run",
     "Python tests.Python tests in tests_volumetry.py.executor": "Run",
+    "Python tests.pytest in tests_variation.py.executor": "Run",
+    "Python tests.pytest in tests_volumetry.py.executor": "Run",
     "Python.aaa.executor": "Run",
     "Python.build_yields_dataset.executor": "Run",
     "Python.config.executor": "Debug",
@@ -141,19 +147,21 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Python_Project_MBFA$sqlalchemy_db.coverage" NAME="sqlalchemy_db Coverage Results" MODIFIED="1748430973691" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
-    <SUITE FILE_PATH="coverage/Python_Project_MBFA$transform.coverage" NAME="transform Coverage Results" MODIFIED="1748532132191" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/etl" />
+    <SUITE FILE_PATH="coverage/Python_Project_MBFA$transform.coverage" NAME="transform Coverage Results" MODIFIED="1748533910217" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/etl" />
     <SUITE FILE_PATH="coverage/Python_Project_MBFA$session.coverage" NAME="session Coverage Results" MODIFIED="1748530861560" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/etl" />
     <SUITE FILE_PATH="coverage/Python_Project_MBFA$sql_alchemy.coverage" NAME="sql_alchemy Coverage Results" MODIFIED="1748437146102" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/data_fetch" />
-    <SUITE FILE_PATH="coverage/Python_Project_MBFA$main.coverage" NAME="main Coverage Results" MODIFIED="1748532137962" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/Python_Project_MBFA$main.coverage" NAME="main Coverage Results" MODIFIED="1748534036134" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
     <SUITE FILE_PATH="coverage/Python_Project_MBFA$ratings_scraper.coverage" NAME="ratings_scraper Coverage Results" MODIFIED="1748421392172" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/data_fetch" />
     <SUITE FILE_PATH="coverage/Python_Project_MBFA$config.coverage" NAME="config Coverage Results" MODIFIED="1748437396308" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
     <SUITE FILE_PATH="coverage/Python_Project_MBFA$models.coverage" NAME="models Coverage Results" MODIFIED="1748528052377" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/etl" />
     <SUITE FILE_PATH="coverage/Python_Project_MBFA$build_yields_dataset.coverage" NAME="build_yields_dataset Coverage Results" MODIFIED="1748437100956" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/data_fetch" />
     <SUITE FILE_PATH="coverage/Python_Project_MBFA$.coverage" NAME=" Coverage Results" MODIFIED="1748451587896" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
-    <SUITE FILE_PATH="coverage/Python_Project_MBFA$visualisation.coverage" NAME="visualisation Coverage Results" MODIFIED="1748511154640" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Python_Project_MBFA$pytest_in_tests_volumetry_py.coverage" NAME="pytest in tests_volumetry.py Coverage Results" MODIFIED="1748533328410" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/Python_Project_MBFA$visualisation.coverage" NAME="visualisation Coverage Results" MODIFIED="1748533684954" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Python_Project_MBFA$test.coverage" NAME="test Coverage Results" MODIFIED="1748352327385" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/data_fetch" />
     <SUITE FILE_PATH="coverage/Python_Project_MBFA$yields.coverage" NAME="yields Coverage Results" MODIFIED="1748428367349" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/data_fetch" />
     <SUITE FILE_PATH="coverage/Python_Project_MBFA$conftests.coverage" NAME="conftests Coverage Results" MODIFIED="1748443946300" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/Python_Project_MBFA$pytest_in_tests_variation_py.coverage" NAME="pytest in tests_variation.py Coverage Results" MODIFIED="1748533322811" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/Python_Project_MBFA$conftest.coverage" NAME="conftest Coverage Results" MODIFIED="1748444712742" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/Python_Project_MBFA$aaa.coverage" NAME="aaa Coverage Results" MODIFIED="1748454899962" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Python_Project_MBFA$wimb.coverage" NAME="wimb Coverage Results" MODIFIED="1748452861325" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

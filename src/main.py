@@ -28,7 +28,7 @@ def main():
             ingest_csv("yields", yields_csv, session)
         else:
             print(f"-- scraping yields from {SCRAPE_START}…")
-            build_yields_dataset(SCRAPE_START, session)
+            build_yields_dataset(SCRAPE_START)
 
         print("-- building final DataFrame")
         df_final = build_final(session)

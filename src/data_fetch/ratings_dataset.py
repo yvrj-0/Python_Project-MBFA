@@ -2,17 +2,15 @@ import sys
 from pathlib import Path
 from datetime import date
 from typing import Optional
-
 import pandas as pd
 import logging
+from helpers.path_utils import add_project_root_to_path
+from helpers.config_utils import load_config
+from helpers.logging_utils import setup_logger
+from helpers.scraping_utils import HEADERS, fetch_all_ratings
+from helpers.io_utils import save_csv
 
-from src.helpers.path_utils import add_project_root_to_path
 add_project_root_to_path(__file__, levels_up=2)
-
-from src.helpers.config_utils import load_config
-from src.helpers.logging_utils import setup_logger
-from src.helpers.scraping_utils import HEADERS, fetch_all_ratings
-from src.helpers.io_utils import save_csv
 
 def build_ratings_dataset(
     start: str = "2020-01-01",
