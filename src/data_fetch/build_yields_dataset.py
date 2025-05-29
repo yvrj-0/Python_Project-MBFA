@@ -1,15 +1,13 @@
-
 import sys
 import pandas as pd
 from pathlib import Path
 from datetime import date
-
 from src.helpers.path_utils import add_project_root_to_path
-add_project_root_to_path(__file__, levels_up=2)
-
 from src.helpers.config_utils import load_config
 from src.helpers.yield_utils import compile_all_rates, to_long_format
 from src.helpers.io_utils import save_csv
+
+add_project_root_to_path(__file__, levels_up=2)
 
 def build_yields_dataset(
     start: str = "2020-01-01",

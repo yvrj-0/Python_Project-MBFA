@@ -5,10 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="580a48f2-c9b6-42ae-87a5-fa4a4ce417b3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/helpers/visualisation_utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/etl/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/etl/ingest.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/etl/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/etl/session.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/etl/transform.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/tests_volumetry.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/tests_volumetry.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visualisation.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualisation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/final_dataset.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/final_dataset.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data_fetch/build_yields_dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/data_fetch/build_yields_dataset.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/config_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/config_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sql_alchemy.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,7 +23,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ExportToHTMLSettings">
-    <option name="printScope" value="1" />
+    <option name="printScope" value="4" />
     <option name="OUTPUT_DIRECTORY" value="$USER_HOME$/Downloads" />
   </component>
   <component name="FileTemplateManagerImpl">
@@ -63,37 +70,42 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python tests.Python tests in tests_variation.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests in tests_volumetry.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python.aaa.executor&quot;: &quot;Run&quot;,
-    &quot;Python.build_yields_dataset.executor&quot;: &quot;Run&quot;,
-    &quot;Python.config.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.conftest.executor&quot;: &quot;Run&quot;,
-    &quot;Python.conftests.executor&quot;: &quot;Run&quot;,
-    &quot;Python.dataset_moody.executor&quot;: &quot;Run&quot;,
-    &quot;Python.ratings_dataset.executor&quot;: &quot;Run&quot;,
-    &quot;Python.ratings_scraper.executor&quot;: &quot;Run&quot;,
-    &quot;Python.sql_alchemy.executor&quot;: &quot;Run&quot;,
-    &quot;Python.sqlalchemy_db.executor&quot;: &quot;Run&quot;,
-    &quot;Python.test.executor&quot;: &quot;Run&quot;,
-    &quot;Python.visualisation.executor&quot;: &quot;Run&quot;,
-    &quot;Python.wimb.executor&quot;: &quot;Run&quot;,
-    &quot;Python.yields.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/pascal/Downloads&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.intellij.pycharm.community.ide.impl.configuration.PythonContentEntriesConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python tests.Python tests in tests_variation.py.executor": "Run",
+    "Python tests.Python tests in tests_volumetry.py.executor": "Run",
+    "Python.aaa.executor": "Run",
+    "Python.build_yields_dataset.executor": "Run",
+    "Python.config.executor": "Debug",
+    "Python.conftest.executor": "Run",
+    "Python.conftests.executor": "Run",
+    "Python.dataset_moody.executor": "Run",
+    "Python.ingest.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.models.executor": "Run",
+    "Python.ratings_dataset.executor": "Run",
+    "Python.ratings_scraper.executor": "Run",
+    "Python.session.executor": "Run",
+    "Python.sql_alchemy.executor": "Run",
+    "Python.sqlalchemy_db.executor": "Run",
+    "Python.test.executor": "Run",
+    "Python.transform.executor": "Run",
+    "Python.visualisation.executor": "Run",
+    "Python.wimb.executor": "Run",
+    "Python.yields.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/pascal/Downloads",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.intellij.pycharm.community.ide.impl.configuration.PythonContentEntriesConfigurable",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\pascal\PycharmProjects\Python_Project-MBFA\tests" />
@@ -129,9 +141,13 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Python_Project_MBFA$sqlalchemy_db.coverage" NAME="sqlalchemy_db Coverage Results" MODIFIED="1748430973691" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/Python_Project_MBFA$transform.coverage" NAME="transform Coverage Results" MODIFIED="1748532132191" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/etl" />
+    <SUITE FILE_PATH="coverage/Python_Project_MBFA$session.coverage" NAME="session Coverage Results" MODIFIED="1748530861560" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/etl" />
     <SUITE FILE_PATH="coverage/Python_Project_MBFA$sql_alchemy.coverage" NAME="sql_alchemy Coverage Results" MODIFIED="1748437146102" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/data_fetch" />
+    <SUITE FILE_PATH="coverage/Python_Project_MBFA$main.coverage" NAME="main Coverage Results" MODIFIED="1748532137962" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
     <SUITE FILE_PATH="coverage/Python_Project_MBFA$ratings_scraper.coverage" NAME="ratings_scraper Coverage Results" MODIFIED="1748421392172" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/data_fetch" />
     <SUITE FILE_PATH="coverage/Python_Project_MBFA$config.coverage" NAME="config Coverage Results" MODIFIED="1748437396308" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/Python_Project_MBFA$models.coverage" NAME="models Coverage Results" MODIFIED="1748528052377" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/etl" />
     <SUITE FILE_PATH="coverage/Python_Project_MBFA$build_yields_dataset.coverage" NAME="build_yields_dataset Coverage Results" MODIFIED="1748437100956" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/data_fetch" />
     <SUITE FILE_PATH="coverage/Python_Project_MBFA$.coverage" NAME=" Coverage Results" MODIFIED="1748451587896" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/Python_Project_MBFA$visualisation.coverage" NAME="visualisation Coverage Results" MODIFIED="1748511154640" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -143,5 +159,6 @@
     <SUITE FILE_PATH="coverage/Python_Project_MBFA$wimb.coverage" NAME="wimb Coverage Results" MODIFIED="1748452861325" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Python_Project_MBFA$dataset_moody.coverage" NAME="dataset_moody Coverage Results" MODIFIED="1748358630825" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/data_fetch" />
     <SUITE FILE_PATH="coverage/Python_Project_MBFA$ratings_dataset.coverage" NAME="ratings_dataset Coverage Results" MODIFIED="1748437583772" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/data_fetch" />
+    <SUITE FILE_PATH="coverage/Python_Project_MBFA$ingest.coverage" NAME="ingest Coverage Results" MODIFIED="1748530106762" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/etl" />
   </component>
 </project>
