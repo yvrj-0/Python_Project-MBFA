@@ -10,10 +10,12 @@ def load_data():
     df = pd.read_csv('data/final_dataset.csv', parse_dates=['Date'])
     df['Date'] = pd.to_datetime(df['Date'])
     df['RatingChanged'] = df['RatingChanged'].fillna(False).astype(bool)
+
     def direction(row):
         if not row['RatingChanged'] or pd.isna(row['PrevRating']):
             return None
         return 'Upgrade' if row['Rating'] > row['PrevRating'] else 'Downgrade'
+
     df['Direction'] = df.apply(direction, axis=1)
     return df
 
@@ -22,7 +24,7 @@ df = load_data()
 st.title("Impact des changements de notation sur les rendements obligataires")
 
 countries = sorted(df['Country'].unique())
-selected_country = st.sidebar.selectbox('Pays', countries)
+selected_country = st.selectbox('Sélectionnez un pays', countries)
 df_country = df[df['Country'] == selected_country]
 
 st.subheader(f"Série temporelle des rendements pour {selected_country}")
@@ -39,7 +41,6 @@ st.pyplot(fig)
 
 st.subheader('Tableau des statistiques par pays')
 st.markdown('Moyenne, variance et écart-type du rendement pour chaque pays')
-
 stats = (
     df.groupby('Country')['Yield']
       .agg(['mean', 'var', 'std'])
@@ -87,11 +88,12 @@ def plot_post_event_paths(direction: str, df: pd.DataFrame, window: int = 100):
                (df['Date'] >= event_date) & \
                (df['Date'] < event_date + pd.Timedelta(days=window))
         series = df.loc[mask, 'Yield']
-        norm = series / series.iloc[0] * 100
-        ax.plot(norm.index.map(lambda i: (df.loc[i, 'Date'] - event_date).days),
-                norm,
-                label=f"{country} @ {event_date.date()}"
-               )
+        if len(series) > 0:
+            norm = series / series.iloc[0] * 100
+            ax.plot(norm.index.map(lambda i: (df.loc[i, 'Date'] - event_date).days),
+                    norm,
+                    label=f"{country} @ {event_date.date()}"
+                   )
     ax.set_title(f"variation des rendements {window} jours après {direction} de la notation")
     ax.set_xlabel("Jours depuis l'événement")
     ax.set_ylabel("Rendement normalisé (base = 100)")
@@ -99,7 +101,6 @@ def plot_post_event_paths(direction: str, df: pd.DataFrame, window: int = 100):
     ax.grid(True)
     plt.tight_layout()
     return fig, ax
-
 
 st.title("Impact des changements de notation – Analyse post-événement")
 direction = st.radio("Type d'événement", ("Upgrade", "Downgrade"))
